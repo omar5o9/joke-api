@@ -4,7 +4,7 @@ import '../styles/global.css';
 
 // data source
 // replace temporary JSON placeholder API
-const source = 'https://jsonplaceholder.typicode.com/users';
+const source = 'https://api.thecatapi.com/v1/images/search?limit=10';
 // fetch the data
 const res = await fetch(source); 
 // store retreived data
@@ -21,34 +21,26 @@ const data = await res.json();
 		<!-- Normalize CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 
-		<title>Retreive and and display external API data with Astro</title>
+		<title>Cats</title>
 	</head>
 	<body>
 		
 		<header class="masthead">
-			<h1 class="site-title">Gallery</h1>
+			<h1 class="site-title">Catos</h1>
 		</header>
 
 		<main id="content" class="main-area">
 
 			<ul class="cards">
-		  
-				<!-- Your API Data -->
-				{
-					data.map( item =>
-					<li class="card-item">
-						<a href="#">
-							<figure class="card">
-							<img src="https://assets.codepen.io/16425/image-placeholder.png" alt="Placeholder">
-							<figcaption class="caption">
-								<h3 class="caption-title">{item.name}</h3>
-								<p>{item.company.catchPhrase}</p>
-							</figcaption>
-							</figure>
-						</a>
-					</li> 
-					)
-				}
+		  {
+
+			data.map((cat) => (
+			  <li class="card">
+				<img src={cat.url} alt="cat" width={cat.width}/>
+			  </li>
+			))
+
+		  }
 		  
 			</ul>
 		  </main>
